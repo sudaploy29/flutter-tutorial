@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class LoginPage extends StatefulWidget {
+  //state change => render ui
   const LoginPage({super.key});
 
   @override
@@ -12,7 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  int _debugMessage = 0;
+  int count = 0;
 
   @override
   void initState() {
@@ -30,11 +31,11 @@ class _LoginPageState extends State<LoginPage> {
         body: Container(
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: const EdgeInsets.all(2),
               child: Card(
                 child: Container(
                   padding: const EdgeInsets.all(32.0),
-                  height: 470,
+                  height: 600,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -43,7 +44,23 @@ class _LoginPageState extends State<LoginPage> {
                         height: 32,
                       ),
                       ..._buildButtons(),
-                      Text("Debug :  ${_debugMessage}"),
+                      Row(
+                        children: [
+                          Text("Debug :  $count"),
+                          IconButton(
+                              onPressed: () {
+                                count++;
+                                setState(() {});
+                              },
+                              icon: const Icon(Icons.add)),
+                          IconButton(
+                              onPressed: () {
+                                count--;
+                                setState(() {});
+                              },
+                              icon: const Icon(Icons.remove)),
+                        ],
+                      ),
                     ],
                   ),
                 ),
