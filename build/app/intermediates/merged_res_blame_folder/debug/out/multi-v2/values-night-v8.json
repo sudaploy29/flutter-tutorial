@@ -4,7 +4,7 @@
             "outputFile": "com.codemobiles.live.flutter.cm01.cmflutter0.app-mergeDebugResources-24:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/ploysuda/Documents/flutter_tutorial/cmflutter0/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/ploysuda/Documents/flutter-tutorial/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
