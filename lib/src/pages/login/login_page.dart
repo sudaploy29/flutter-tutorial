@@ -1,3 +1,4 @@
+import 'package:cmflutter0/src/pages/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Card(
                 child: Container(
                   padding: const EdgeInsets.all(32.0),
-                  height: 350,
+                  height: 370,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -49,8 +50,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _handleClickLogin() {
-    print(
-        "CMDev: : Login with ${_usernameController.text}, ${_passwordController.text}");
+    // print(
+    //     "CMDev: : Login with ${_usernameController.text}, ${_passwordController.text}");
+    Navigator.pushNamed(context, AppRoute.home);
   }
 
   void _handleClickReset() {
@@ -74,7 +76,12 @@ class _LoginPageState extends State<LoginPage> {
   _buildButtons() {
     return [
       ElevatedButton(onPressed: _handleClickLogin, child: Text("SignIn")),
-      OutlinedButton(onPressed: _handleClickReset, child: Text("Reset"))
+      OutlinedButton(onPressed: _handleClickRegister, child: Text("Register")),
+      OutlinedButton(onPressed: _handleClickReset, child: Text("Reset")),
     ];
+  }
+
+  void _handleClickRegister() {
+    Navigator.pushNamed(context, AppRoute.register);
   }
 }
