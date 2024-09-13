@@ -48,16 +48,10 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Text("Debug :  $count"),
                           IconButton(
-                              onPressed: () {
-                                count++;
-                                setState(() {});
-                              },
+                              onPressed: _handleClickAdd,
                               icon: const Icon(Icons.add)),
                           IconButton(
-                              onPressed: () {
-                                count--;
-                                setState(() {});
-                              },
+                              onPressed: _handleClickRemove,
                               icon: const Icon(Icons.remove)),
                         ],
                       ),
@@ -102,5 +96,15 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleClickRegister() {
     Navigator.pushNamed(context, AppRoute.register);
+  }
+
+  _handleClickAdd() {
+    count++;
+    setState(() {});
+  }
+
+  _handleClickRemove() {
+    count--;
+    setState(() {});
   }
 }
