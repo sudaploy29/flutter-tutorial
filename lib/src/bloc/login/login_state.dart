@@ -2,12 +2,19 @@ part of 'login_bloc.dart';
 
 class LoginState extends Equatable {
   final int count;
-  const LoginState({this.count = 0});
+  final bool isAuthented;
+  const LoginState({
+    this.count = 0,
+    this.isAuthented = false,
+  });
 
-  LoginState copyWith({int? count}) {
-    return LoginState(count: count ?? this.count);
+  LoginState copyWith({int? count, bool? isAuthented}) {
+    return LoginState(
+      count: count ?? this.count,
+      isAuthented: isAuthented ?? this.isAuthented,
+    );
   }
 
   @override
-  List<Object?> get props => [count];
+  List<Object?> get props => [count, isAuthented];
 }
