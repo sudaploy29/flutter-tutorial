@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:cmflutter0/src/models/user.dart';
 import 'package:equatable/equatable.dart';
@@ -26,8 +28,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (event.payload.username == "admin" &&
           event.payload.password == "1234") {
         emit(state.copyWith(isAuthented: true));
+      } else {
+        emit(state.copyWith(isAuthented: false));
       }
-      emit(state.copyWith(isAuthented: false));
     });
   }
 }

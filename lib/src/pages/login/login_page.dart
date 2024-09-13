@@ -35,47 +35,63 @@ class _LoginPageState extends State<LoginPage> {
             },
           ),
         ),
-        body: Container(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(2),
-              child: Card(
-                child: Container(
-                  padding: const EdgeInsets.all(32.0),
-                  height: 600,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      ..._buildTextFields(),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      ..._buildButtons(),
-                      Row(
-                        children: [
-                          // Text( "Debug : ${context.read<LoginBloc>().state.count}"),
-                          BlocBuilder<LoginBloc, LoginState>(
-                            builder: (context, state) {
-                              return Text("DebugX : ${state.count}");
-                            },
-                          ),
-                          IconButton(
-                              onPressed: () => context
-                                  .read<LoginBloc>()
-                                  .add(LoginEventAdd()),
-                              icon: const Icon(Icons.add)),
-                          IconButton(
-                              onPressed: () => context
-                                  .read<LoginBloc>()
-                                  .add(LoginEventRemove()),
-                              icon: const Icon(Icons.remove)),
-                        ],
-                      ),
-                    ],
+        body: SingleChildScrollView(
+          child: Container(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(2),
+                child: Card(
+                  child: Container(
+                    padding: const EdgeInsets.all(32.0),
+                    height: 600,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ..._buildTextFields(),
+                        SizedBox(
+                          height: 32,
+                        ),
+                        BlocBuilder<LoginBloc, LoginState>(
+                          builder: (context, state) {
+                            return Text(
+                              "Login Result: ${state.isAuthented ? "Success" : "Error"}",
+                              style: TextStyle(
+                                  color: state.isAuthented
+                                      ? Colors.green
+                                      : Colors.red),
+                            );
+                          },
+                        ),
+                        SizedBox(
+                          height: 32,
+                        ),
+                        ..._buildButtons(),
+                        Row(
+                          children: [
+                            // Text( "Debug : ${context.read<LoginBloc>().state.count}"),
+                            BlocBuilder<LoginBloc, LoginState>(
+                              builder: (context, state) {
+                                return Text("DebugX : ${state.count}");
+                              },
+                            ),
+                            IconButton(
+                                onPressed: () => context
+                                    .read<LoginBloc>()
+                                    .add(LoginEventAdd()),
+                                icon: const Icon(Icons.add)),
+                            IconButton(
+                                onPressed: () => context
+                                    .read<LoginBloc>()
+                                    .add(LoginEventRemove()),
+                                icon: const Icon(Icons.remove)),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            )));
+              )),
+        ));
   }
 
   void _handleClickLogin() {
