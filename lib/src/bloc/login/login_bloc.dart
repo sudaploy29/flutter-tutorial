@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cmflutter0/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -18,6 +19,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       //excute something
       await Future.delayed(Duration(seconds: 1));
       emit(state.copyWith(count: state.count - 1));
+    });
+    //Login
+    on<LoginEventLogin>((event, emit) async {
+      //excute something
+      
+      emit(state.copyWith(isAuthented: true));
     });
   }
 }
