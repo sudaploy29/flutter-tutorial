@@ -1,6 +1,9 @@
+import 'package:cmflutter0/src/app.dart';
+import 'package:cmflutter0/src/bloc/login/login_bloc.dart';
 import 'package:cmflutter0/src/pages/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   //state change => render ui
@@ -13,7 +16,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  int count = 0;
 
   @override
   void initState() {
@@ -46,12 +48,21 @@ class _LoginPageState extends State<LoginPage> {
                       ..._buildButtons(),
                       Row(
                         children: [
-                          Text("Debug :  $count"),
+                          // Text( "Debug : ${context.read<LoginBloc>().state.count}"),
+                          BlocBuilder<LoginBloc, LoginState>(
+                            builder: (context, state) {
+                              return Text("DebugX : ${state.count}");
+                            },
+                          ),
                           IconButton(
-                              onPressed: _handleClickAdd,
+                              onPressed: () => context
+                                  .read<LoginBloc>()
+                                  .add(LoginEventAdd()),
                               icon: const Icon(Icons.add)),
                           IconButton(
-                              onPressed: _handleClickRemove,
+                              onPressed: () => context
+                                  .read<LoginBloc>()
+                                  .add(LoginEventRemove()),
                               icon: const Icon(Icons.remove)),
                         ],
                       ),
@@ -96,15 +107,5 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleClickRegister() {
     Navigator.pushNamed(context, AppRoute.register);
-  }
-
-  _handleClickAdd() {
-    count++;
-    setState(() {});
-  }
-
-  _handleClickRemove() {
-    count--;
-    setState(() {});
   }
 }
