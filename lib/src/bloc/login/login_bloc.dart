@@ -23,8 +23,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     //Login
     on<LoginEventLogin>((event, emit) async {
       //excute something
-      
-      emit(state.copyWith(isAuthented: true));
+      if (event.payload.username == "admin" &&
+          event.payload.password == "1234") {
+        emit(state.copyWith(isAuthented: true));
+      }
+      emit(state.copyWith(isAuthented: false));
     });
   }
 }
