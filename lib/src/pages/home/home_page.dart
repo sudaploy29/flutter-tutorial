@@ -29,10 +29,26 @@ class _HomePageState extends State<HomePage> {
                   return Text("Loading...");
                 }
                 final youtubes = snapshot.data;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [...youtubes!.map((e) => Text(e.title))],
+                return ListView.builder(
+                  itemCount: youtubes!.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      margin: EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(youtubes![index].title),
+                          Text(youtubes![index].subtitle),
+                        ],
+                      ),
+                    );
+                  },
                 );
+
+                // return Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [...youtubes!.map((e) => Text(e.title))],
+                // );
               })),
         ));
   }
