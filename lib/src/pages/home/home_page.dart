@@ -18,12 +18,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home Page"),
-      ),
-      body: Center(
-        child: Text("1234"),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Home Page"),
+        ),
+        body: Container(
+          child: FutureBuilder(
+              future: WebApiService().feed(),
+              builder: ((context, snapshot) {
+                if (snapshot.hasData == false) {
+                  return Text("Loading...");
+                }
+                final youtubes = snapshot.data;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [...youtubes!.map((e) => Text(e.title))],
+                );
+              })),
+        ));
   }
 }
