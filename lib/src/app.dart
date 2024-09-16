@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:cmflutter0/src/pages/login/login_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+final navigatorState = GlobalKey<NavigatorState>();
+
 class CMApp extends StatelessWidget {
   const CMApp({super.key});
 
@@ -17,6 +19,7 @@ class CMApp extends StatelessWidget {
           title: "CMApp",
           routes: AppRoute.all,
           home: LoginPage(),
+          navigatorKey: navigatorState,
         ));
   }
 }
